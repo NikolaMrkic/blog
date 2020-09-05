@@ -21,7 +21,6 @@ $linkColor: white;
             display: inline;
             text-align: center;
             padding: 1rem 1rem;
-            text-decoration: none;
             color: $linkColor;
         }
     }
@@ -29,16 +28,28 @@ $linkColor: white;
     &-right{
         float: right;
         display: flex;
+        padding: 0.5rem 1rem 0 0 ;
 
         & > a{
+            border-bottom: 1px solid white;
             display: inline;
             text-align: center;
-            padding: 1rem 1rem;
-            text-decoration: none;
+            margin: auto;
+            padding: 0; 
+            outline: 3px solid black;
+            margin-left: 1.5rem;
             color: $linkColor;
         }
     }
 }
+
+a:hover{
+    color: $linkColor !important;
+}
+
+a:link {
+    color: $linkColor;
+  }
 
 
 
