@@ -12,7 +12,7 @@ const Header = () => {
         </div>
         <div className="headerNav-right">
           <Input
-            className="headerNav-test"
+            className="headerNav-search"
             size="small"
             icon="search"
             placeholder="Search..."
