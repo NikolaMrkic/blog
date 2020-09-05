@@ -1,6 +1,8 @@
 import { React, Router, Switch, Route } from "./global";
 import NotFoundPage from "./pages/404";
 import BlogPosts from "./pages/BlogPosts";
+import "../src/styles/styles.scss";
+
 function App() {
   return (
     <Router>
