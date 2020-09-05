@@ -19,7 +19,7 @@ const Header = () => {
           />
 
           <NavLink activeClassName="active" to="/link-1">
-            Link 1
+            <a href="#">Link 1</a>
           </NavLink>
           <NavLink activeClassName="active" to="/link-2">
             Link 2
