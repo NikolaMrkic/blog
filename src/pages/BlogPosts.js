@@ -1,8 +1,14 @@
-import React, { Component } from "react";
+import { React, Component } from "../global";
+import Header from "../components/Header/Header";
 
 class BlogPosts extends Component {
   render() {
-    return <div>Blog posts page</div>;
+    return (
+      <div>
+        <Header />
+        Blog posts page
+      </div>
+    );
   }
 }
 
