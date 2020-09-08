@@ -4,7 +4,9 @@ const NotFoundPage = () => {
   return (
     <div>
       <Header />
-      Not Found Page
+      <div className="container">
+        <p style={{ color: "red" }}>Not Found Page</p>
+      </div>
     </div>
   );
 };
