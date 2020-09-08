@@ -13,7 +13,15 @@ import {
 } from "react-router-dom";
 
 // imports from semantic-ui-react
-import { Segment, Input } from "semantic-ui-react";
+import {
+  Segment,
+  Input,
+  Grid,
+  Message,
+  Card,
+  Button,
+  Image,
+} from "semantic-ui-react";
 
 export {
   React,
@@ -25,4 +33,10 @@ export {
   Route,
   NavLink,
   Input,
+  Grid,
+  Message,
+  Card,
+  Button,
+  Image,
+  Link,
 };
