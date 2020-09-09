@@ -31,9 +31,7 @@ class BlogPosts extends Component {
               </Grid.Column>
 
               <Grid.Column width={14}>
-                <div>
-                  <BlogCart />
-                </div>
+                <BlogCart />
               </Grid.Column>
             </Grid.Row>
           </Grid>

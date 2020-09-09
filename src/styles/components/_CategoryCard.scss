@@ -1,9 +1,10 @@
-$linkColor:#4183c4;
+$linkColor: #4183c4;
 
 .categoryCard {
   position: fixed;
   border: 0.1rem solid black;
-  padding-bottom: 38.4rem;
+  padding-right: 5rem;
+  height: 67%;
 
   &-categories {
     padding: 1rem;
@@ -16,4 +17,3 @@ $linkColor:#4183c4;
 .link:hover {
   color: $linkColor !important;
 }
-
