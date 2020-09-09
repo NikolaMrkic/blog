@@ -18,7 +18,7 @@ const Header = () => {
               placeholder="Search..."
             />
             <NavLink activeClassName="active" to="/link-1">
-              <a href="#">Link 1</a>
+              Link 1
             </NavLink>
             <NavLink activeClassName="active" to="/link-2">
               Link 2

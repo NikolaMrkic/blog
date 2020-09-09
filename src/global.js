@@ -10,6 +10,7 @@ import {
   Redirect,
   useLocation,
   NavLink,
+  useHistory,
 } from "react-router-dom";
 
 // imports from semantic-ui-react
@@ -21,7 +22,17 @@ import {
   Card,
   Button,
   Image,
+  Modal,
+  Header,
+  Form,
+  Label,
 } from "semantic-ui-react";
+
+//imports from redux-form
+import { Field, reduxForm } from "redux-form";
+
+//imports from redux
+import { useDispatch, connect } from "react-redux";
 
 export {
   React,
@@ -39,4 +50,13 @@ export {
   Button,
   Image,
   Link,
+  Modal,
+  Header,
+  Field,
+  reduxForm,
+  Form,
+  useDispatch,
+  connect,
+  useHistory,
+  Label,
 };
