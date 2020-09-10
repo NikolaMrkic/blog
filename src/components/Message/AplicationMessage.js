@@ -1,10 +1,28 @@
-import { React, useState, Message, Button, Modal, Header } from "../../global";
+import {
+  React,
+  useState,
+  Message,
+  Button,
+  Modal,
+  Header,
+  useEffect,
+} from "../../global";
 import BlogForm from "../Form/BlogForm";
 import blogs from "../Blog/BlogCard";
 
-const AplicationMessage = () => {
+let AplicationMessage = (props) => {
   const [isVisibleMessage, setIsVisibleMessage] = useState(true);
   const [isVisibleModal, setIsVisibleModal] = useState(false);
+  const [isEditabileForm, setEditabileForm] = useState(false);
+  const [isBlogForEdit, setBlogForEdit] = useState({});
+
+  useEffect(() => {
+    const { showModal, editabileForm, blogForEdit } = props;
+    //open modal from blog card component with edit button
+    setIsVisibleModal(showModal);
+    setEditabileForm(editabileForm);
+    setBlogForEdit(blogForEdit);
+  }, [props]);
 
   const handleDismiss = () => {
     setIsVisibleMessage(false);
@@ -20,6 +38,7 @@ const AplicationMessage = () => {
 
   const closeModal = () => {
     setIsVisibleModal(false);
+    setBlogForEdit({});
   };
 
   if (isVisibleMessage) {
@@ -43,14 +62,14 @@ const AplicationMessage = () => {
             size="small"
             closeIcon
             open={isVisibleModal}
-            onClose={() => setIsVisibleModal(false)}
+            onClose={() => closeModal()}
           >
             <Header icon="archive" content="Add / Edit blog post" />
-            <BlogForm closeModal={closeModal} />
-            {/* <Modal.Actions>
-              <Button secondary>Post</Button>
-              <Button secondary>Cancel</Button>
-            </Modal.Actions> */}
+            <BlogForm
+              closeModal={closeModal}
+              initialValues={isBlogForEdit}
+              isEditabileForm={isEditabileForm}
+            />
           </Modal>
         </div>
       </div>

@@ -6,10 +6,42 @@ import CategoryCard from "../components/Category/CategoryCard";
 class BlogPosts extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      isVisibleModal: false,
+      blogForEdit: {},
+      editabileForm: false,
+    };
+    this.showModal = this.showModal.bind(this);
+  }
+
+  showModal(blog) {
+    this.setState({
+      isVisibleModal: true,
+      blogForEdit: blog,
+      editabileForm: true,
+    });
   }
 
   render() {
+    const { isVisibleModal, blogForEdit, editabileForm } = this.state;
+
+    const blogPosts = [
+      {
+        title: "Blog Post 1",
+        description:
+          " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+      },
+      {
+        title: "Blog Post 2",
+        description:
+          " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+      },
+      {
+        title: "Blog Post 3",
+        description:
+          " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+      },
+    ];
     return (
       <div>
         <Header />
@@ -19,7 +51,11 @@ class BlogPosts extends Component {
               <Grid.Column width={2}></Grid.Column>
 
               <Grid.Column width={14}>
-                <ApplicationMessage />
+                <ApplicationMessage
+                  showModal={isVisibleModal}
+                  blogForEdit={blogForEdit}
+                  editabileForm={editabileForm}
+                />
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -31,7 +67,7 @@ class BlogPosts extends Component {
               </Grid.Column>
 
               <Grid.Column width={14}>
-                <BlogCart />
+                <BlogCart blogs={blogPosts} showModal={this.showModal} />
               </Grid.Column>
             </Grid.Row>
           </Grid>

@@ -1,5 +1,5 @@
 // imports from react
-import React, { useState, Component } from "react";
+import React, { useState, Component, useEffect } from "react";
 
 // imports from react router
 import {
@@ -59,4 +59,5 @@ export {
   connect,
   useHistory,
   Label,
+  useEffect,
 };
