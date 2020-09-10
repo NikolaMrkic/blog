@@ -1,11 +1,10 @@
 import { BLOG } from "../actions/BlogActionTypes";
 
 const initialState = {
-  blogs: [],
-  currentUser: {},
-  fetching: false,
   success: false,
-  error: null,
+  blogs: [],
+  blog: {},
+  errorMessage: null,
 };
 
 export default function BlogReducer(state = initialState, action) {
@@ -13,18 +12,17 @@ export default function BlogReducer(state = initialState, action) {
     case BLOG.GET:
       return {
         ...state,
-        users: [...state.users, action.payload],
+        blogs: [...state.blogs, action.payload],
       };
     case BLOG.GET_ONE:
       return {
         ...state,
-        currentUser: action.payload.data,
+        blog: action.payload.data,
       };
     case BLOG.RECEIVE:
       return {
         ...state,
-        users: [...state.users, action.payload.users.userResponse],
-        fetching: true,
+        blogs: [...state.blogs, action.payload.blogs.blogResponse],
         success: true,
         error: null,
       };
@@ -37,13 +35,12 @@ export default function BlogReducer(state = initialState, action) {
     case BLOG.SUCCESS:
       return {
         ...state,
-        users: action.payload.data,
-        fetching: true,
+        blogs: action.payload.data,
         success: true,
         error: null,
       };
     case BLOG.SUCCESS_ONE:
-      return state.merge({ currentUser: action.payload.data });
+      return state.merge({ blog: action.payload.data });
     case BLOG.FAILURE:
       break;
     default:

@@ -12,9 +12,9 @@ import { renderTextArea } from "./CustomInputs";
 
 // probati sa let blog form
 let BlogForm = (props) => {
+  console.log("props", props);
   //   const dispatch = useDispatch();
   //   let history = useHistory();
-  console.log("props", props);
 
   const onSubmitForm = (values) => {
     // const editableForm = props.editableForm;
@@ -26,7 +26,7 @@ let BlogForm = (props) => {
     //   history.push("/users");
   };
 
-  const { handleSubmit, closeModal } = props;
+  const { handleSubmit } = props;
   return (
     <div className="blogFormWrapper">
       <Form onSubmit={handleSubmit(onSubmitForm)}>
