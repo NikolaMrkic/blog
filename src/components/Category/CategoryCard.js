@@ -1,4 +1,4 @@
-import { React, Segment, Link } from "../../global";
+import { React, Link } from "../../global";
 
 const categoryTitle = "Blog Categories";
 

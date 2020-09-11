@@ -1,4 +1,4 @@
-import { React, NavLink, Input, Link } from "../../global";
+import { React, NavLink, Input } from "../../global";
 
 const Header = () => {
   return (

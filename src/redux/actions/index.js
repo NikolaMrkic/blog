@@ -8,13 +8,13 @@ export const blogAction = {
       success: false,
       error: null,
     }),
-  requestOne: (id) =>
-    createAction(BLOG.GET_ONE, {
-      id,
-      fetching: true,
-      success: true,
-      error: null,
-    }),
+  // requestOne: (id) =>
+  //   createAction(BLOG.GET_ONE, {
+  //     id,
+  //     fetching: true,
+  //     success: true,
+  //     error: null,
+  //   }),
   save: (data) =>
     createAction(BLOG.SAVE, {
       /// ovo me je zezalo da ubacim objekat u array nakon responsa
@@ -25,14 +25,11 @@ export const blogAction = {
     }),
   recive: (data) =>
     createAction(BLOG.RECEIVE, {
-      users: data,
-      fetching: true,
-      success: true,
-      error: null,
+      ...data,
     }),
-  put: (id, data) =>
+  put: (blogForEdit, data) =>
     createAction(BLOG.PUT, {
-      id,
+      blogForEdit,
       ...data,
       fetching: true,
       success: false,
@@ -47,6 +44,13 @@ export const blogAction = {
     }),
   success: (data) =>
     createAction(BLOG.SUCCESS, {
+      ...data,
+      fetching: true,
+      success: true,
+      error: null,
+    }),
+  successOne: (data) =>
+    createAction(BLOG.SUCCESS_ONE, {
       ...data,
       fetching: true,
       success: true,

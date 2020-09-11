@@ -6,18 +6,21 @@ import {
   Modal,
   Header,
   useEffect,
+  useDispatch,
 } from "../../global";
 import BlogForm from "../Form/BlogForm";
-import blogs from "../Blog/BlogCard";
+import BLOG from "../../redux/actions/index";
 
 let AplicationMessage = (props) => {
   const [isVisibleMessage, setIsVisibleMessage] = useState(true);
   const [isVisibleModal, setIsVisibleModal] = useState(false);
   const [isEditabileForm, setEditabileForm] = useState(false);
   const [isBlogForEdit, setBlogForEdit] = useState({});
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const { showModal, editabileForm, blogForEdit } = props;
+
     //open modal from blog card component with edit button
     setIsVisibleModal(showModal);
     setEditabileForm(editabileForm);
@@ -32,13 +35,25 @@ let AplicationMessage = (props) => {
     }, 2000);
   };
 
-  const showModal = () => {
+  const showModalForPost = () => {
     setIsVisibleModal(true);
+    setBlogForEdit({});
   };
 
   const closeModal = () => {
     setIsVisibleModal(false);
+    setEditabileForm(false);
     setBlogForEdit({});
+  };
+
+  const handleSubmit = (values) => {
+    if (isEditabileForm) {
+      dispatch(BLOG.put(values));
+      setIsVisibleModal(false);
+    } else {
+      dispatch(BLOG.save(values));
+      setIsVisibleModal(false);
+    }
   };
 
   if (isVisibleMessage) {
@@ -53,10 +68,11 @@ let AplicationMessage = (props) => {
         </div>
 
         <div className="blogPost-addButton">
-          <Button secondary onClick={showModal}>
+          <Button secondary onClick={showModalForPost}>
             Add post
           </Button>
         </div>
+
         <div>
           <Modal
             size="small"
@@ -66,6 +82,7 @@ let AplicationMessage = (props) => {
           >
             <Header icon="archive" content="Add / Edit blog post" />
             <BlogForm
+              onSubmit={handleSubmit}
               closeModal={closeModal}
               initialValues={isBlogForEdit}
               isEditabileForm={isEditabileForm}
