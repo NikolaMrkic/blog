@@ -1,13 +1,23 @@
-import { React, Grid, Button, Image } from "../../global";
+import { React, Grid, Button, Image, useDispatch, _ } from "../../global";
+import BLOG from "../../redux/actions/index";
 
 const BlogCard = (props) => {
-  const { showModal } = props;
-  if (props.blogs) {
+  const { showModalForEdit } = props;
+  const dispatch = useDispatch();
+
+  const handlerForDelete = (blogForDelete) => {
+    const id = blogForDelete.id;
+    dispatch(BLOG.delete(id));
+  };
+
+  let sortedBlogs = props.blogs;
+  sortedBlogs = _.orderBy(sortedBlogs, "updatedAt", "desc");
+  if (sortedBlogs) {
     return (
       <div>
-        {props.blogs.map((data, index) => {
+        {sortedBlogs.map((data, index) => {
           return (
-            <div className="blogCard-container" key={data.index}>
+            <div className="blogCard-container" key={data.id}>
               <Grid width={16}>
                 <Grid.Column width={2}>
                   <div className="blogCard-smallImage">
@@ -17,18 +27,17 @@ const BlogCard = (props) => {
                   </div>
                 </Grid.Column>
                 <Grid.Column width={11}>
-                  <title>{data.title}</title>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry
-                  </p>
+                  <h1>{data.title}</h1>
+                  <p>Posted date: {data.createdAt} by Some person</p>
                 </Grid.Column>
                 <Grid.Column width={3}>
                   <div className="blogCard-butons">
-                    <Button secondary onClick={() => showModal(data)}>
+                    <Button secondary onClick={() => showModalForEdit(data)}>
                       Edit
                     </Button>
-                    <Button secondary>Delete</Button>
+                    <Button secondary onClick={() => handlerForDelete(data)}>
+                      Delete
+                    </Button>
                   </div>
                 </Grid.Column>
               </Grid>
@@ -36,7 +45,7 @@ const BlogCard = (props) => {
               <Grid width={16}>
                 <Grid.Column width={16}>
                   <div>
-                    <big>{data.description}</big>
+                    <big>{data.text}</big>
                   </div>
                 </Grid.Column>
               </Grid>

@@ -39,7 +39,10 @@ const put = async function (url, data, options = {}) {
 const del = async function (url, options = {}) {
   var result = [];
   await api.delete(url, options).then((res) => (result = res));
-  const dataAndStatusForDelete = { data: result.data, status: result.status };
+  const dataAndStatusForDelete = {
+    data: result.data.id,
+    status: result.status,
+  };
 
   return dataAndStatusForDelete;
 };

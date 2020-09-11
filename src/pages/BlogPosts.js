@@ -1,8 +1,10 @@
-import { React, Component, Grid, Segment, Message, Button } from "../global";
+import { React, Component, Grid, connect } from "../global";
 import Header from "../components/Header/Header";
-import BlogCart from "../components/Blog/BlogCard";
+import BlogCard from "../components/Blog/BlogCard";
 import ApplicationMessage from "../components/Message/AplicationMessage";
 import CategoryCard from "../components/Category/CategoryCard";
+import BLOG from "../redux/actions/index";
+
 class BlogPosts extends Component {
   constructor(props) {
     super(props);
@@ -11,10 +13,23 @@ class BlogPosts extends Component {
       blogForEdit: {},
       editabileForm: false,
     };
-    this.showModal = this.showModal.bind(this);
+    this.showModalForEdit = this.showModalForEdit.bind(this);
+    this.clsoeModal = this.clsoeModal.bind(this);
   }
 
-  showModal(blog) {
+  componentWillReceiveProps(newProps) {
+    const closeModalAfterUpdate = newProps.getBlogsAction.type;
+    const successReturning = newProps.getBlogsAction.payload.fetching;
+    const typeForReturningBlogs = "BLOG_GET";
+    if (closeModalAfterUpdate === typeForReturningBlogs && successReturning) {
+      this.setState({
+        isVisibleModal: false,
+        editabileForm: false,
+      });
+    }
+  }
+
+  showModalForEdit(blog) {
     this.setState({
       isVisibleModal: true,
       blogForEdit: blog,
@@ -22,26 +37,15 @@ class BlogPosts extends Component {
     });
   }
 
-  render() {
-    const { isVisibleModal, blogForEdit, editabileForm } = this.state;
+  clsoeModal() {
+    this.setState({
+      isVisibleModal: false,
+    });
+  }
 
-    const blogPosts = [
-      {
-        title: "Blog Post 1",
-        description:
-          " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
-      },
-      {
-        title: "Blog Post 2",
-        description:
-          " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
-      },
-      {
-        title: "Blog Post 3",
-        description:
-          " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
-      },
-    ];
+  render() {
+    const { blogsArray } = this.props;
+    const { isVisibleModal, blogForEdit, editabileForm } = this.state;
     return (
       <div>
         <Header />
@@ -52,6 +56,7 @@ class BlogPosts extends Component {
 
               <Grid.Column width={14}>
                 <ApplicationMessage
+                  clsoeModal={isVisibleModal}
                   showModal={isVisibleModal}
                   blogForEdit={blogForEdit}
                   editabileForm={editabileForm}
@@ -67,7 +72,11 @@ class BlogPosts extends Component {
               </Grid.Column>
 
               <Grid.Column width={14}>
-                <BlogCart blogs={blogPosts} showModal={this.showModal} />
+                <BlogCard
+                  blogs={blogsArray}
+                  clsoeModal={this.clsoeModal}
+                  showModalForEdit={this.showModalForEdit}
+                />
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -77,4 +86,24 @@ class BlogPosts extends Component {
   }
 }
 
-export default BlogPosts;
+const mapStateToProps = (state) => {
+  const fetchingBlogSuccess = state.blogState.success;
+  console.log("state", state);
+  // Redux Store --> Component
+  if (fetchingBlogSuccess) {
+    const blogsArray = state.blogState.blogs.resultData;
+
+    return {
+      blogsArray: blogsArray,
+    };
+  }
+};
+
+// anything returned from this function will end up as props
+function mapDispatchToProps(dispatch) {
+  return {
+    getBlogsAction: dispatch(BLOG.request()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BlogPosts);

@@ -6,8 +6,5 @@ export function createActionTypes(base, actions = []) {
 }
 
 export function createAction(type, data = {}) {
-  console.log("type iz utilsa", type);
-  console.log("data iz utilsa", data);
-
   return { type, payload: data };
 }

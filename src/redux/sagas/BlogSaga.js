@@ -4,22 +4,8 @@ import { blogAction } from "../actions/index";
 import { BLOG } from "../actions/BlogActionTypes";
 
 function* handleGetBlogs() {
-  console.log("DOVLACIMMMMMMMMMMMMMMMMMMMMMM");
-
   try {
-    const { data } = yield call(DataUtils.get, `api/BlogPosts`);
-    console.log("data from saga", data);
-    yield put(blogAction.success({ data }));
-  } catch (e) {
-    yield put(blogAction.failure({ error: { ...e } }));
-  }
-}
-
-function* handleGetOneBlog(action) {
-  try {
-    const { id } = action.payload;
-    const { data } = yield call(DataUtils.get, `api/BlogPosts` + id);
-    console.log("data from saga handleGetOne", data);
+    const { data } = yield call(DataUtils.get, `/api/BlogPosts`);
     yield put(blogAction.success({ data }));
   } catch (e) {
     yield put(blogAction.failure({ error: { ...e } }));
@@ -27,17 +13,45 @@ function* handleGetOneBlog(action) {
 }
 
 function* handlePostBlog(action) {
-  console.log("AKCIJAAAAAAAA", action);
   const blog = action.payload;
-  console.log("BLOG IZ SAGE ", blog);
 
   try {
-    const response = yield call(DataUtils.post, `api/BlogPosts`, blog);
-    console.log("response from saga handlePost", response);
-    console.log("response.data from saga handlePost", response.data);
+    const response = yield call(DataUtils.post, `/api/BlogPosts`, blog);
     const blogResponse = response.data;
-    console.log("DOVUKAOOOOOOO responseee", blogResponse);
     yield put(blogAction.recive({ blogResponse }));
+  } catch (e) {
+    yield put(blogAction.failure({ error: { ...e } }));
+  }
+}
+
+function* handleDelete(action) {
+  const blogId = action.payload.id;
+  try {
+    const response = yield call(DataUtils.del, `/api/BlogPosts/` + blogId);
+
+    const data = yield call(DataUtils.get, `/api/BlogPosts`);
+    yield put(blogAction.success({ data }));
+  } catch (e) {
+    yield put(blogAction.failure({ error: { ...e } }));
+  }
+}
+
+function* handlePut(action) {
+  const blogId = action.payload.blogForEdit.id;
+  const blogForEdit = action.payload.blogForEdit;
+  try {
+    const response = yield call(
+      DataUtils.put,
+      `/api/BlogPosts/` + blogId,
+      blogForEdit
+    );
+    const blogResponseStatus = response.status;
+    const noContent = 204;
+
+    if (blogResponseStatus === noContent) {
+      const { data } = yield call(DataUtils.get, `/api/BlogPosts`);
+      yield put(blogAction.successOne({ data }));
+    }
   } catch (e) {
     yield put(blogAction.failure({ error: { ...e } }));
   }
@@ -46,11 +60,9 @@ function* handlePostBlog(action) {
 export function* watchAllUserAdminSagas() {
   yield all([
     takeLatest(BLOG.GET, handleGetBlogs),
-    takeLatest(BLOG.GET_ONE, handleGetOneBlog),
     takeLatest(BLOG.SAVE, handlePostBlog),
-    // takeLatest(BLOG.PUT, handlePut),
-    // takeLatest(BLOG.PATCH, handlePatch),
-    // takeLatest(BLOG.DELETE, handleDelete),
+    takeLatest(BLOG.PUT, handlePut),
+    takeLatest(BLOG.DELETE, handleDelete),
   ]);
 }
 

@@ -7,8 +7,6 @@ import {
   Route,
   Link,
   Switch,
-  Redirect,
-  useLocation,
   NavLink,
   useHistory,
 } from "react-router-dom";
@@ -33,6 +31,9 @@ import { Field, reduxForm } from "redux-form";
 
 //imports from redux
 import { useDispatch, connect } from "react-redux";
+
+// import lodash
+import _ from "lodash";
 
 export {
   React,
@@ -60,4 +61,5 @@ export {
   useHistory,
   Label,
   useEffect,
+  _,
 };

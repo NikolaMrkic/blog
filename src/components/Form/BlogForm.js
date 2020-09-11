@@ -1,35 +1,13 @@
-import {
-  React,
-  Field,
-  reduxForm,
-  Button,
-  useHistory,
-  useDispatch,
-  Form,
-  Message,
-} from "../../global";
+import { React, Field, reduxForm, Button, Form } from "../../global";
 import { renderTextArea } from "./CustomInputs";
 
 // probati sa let blog form
 let BlogForm = (props) => {
-  console.log("props", props);
-  //   const dispatch = useDispatch();
-  //   let history = useHistory();
-
-  const onSubmitForm = (values) => {
-    // const editableForm = props.editableForm;
-    console.log("valuesSSSSSSSSSSSSSSSSSSSSSSSs", values);
-    // if (editableForm) {
-    //   dispatch(USER_ADMIN.requestOne(values));
-    // } else {
-    //   dispatch(USER_ADMIN.save(values));
-    //   history.push("/users");
-  };
-
   const { handleSubmit } = props;
   return (
     <div className="blogFormWrapper">
-      <Form onSubmit={handleSubmit(onSubmitForm)}>
+      {/* <Form onSubmit={handleSubmit(onSubmitForm)}> */}
+      <Form onSubmit={handleSubmit}>
         <div>
           <Field
             required
@@ -41,7 +19,7 @@ let BlogForm = (props) => {
           />
           <Field
             label="Text"
-            name="description"
+            name="text"
             component={renderTextArea}
             type="text"
             placeholder="Text of the post"

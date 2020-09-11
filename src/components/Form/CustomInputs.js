@@ -1,4 +1,4 @@
-import { React, Input, Form, Label } from "../../global";
+import { React, Form } from "../../global";
 
 export const renderTextArea = (field) => (
   <Form.TextArea
