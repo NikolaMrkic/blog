@@ -12,9 +12,11 @@ class BlogPosts extends Component {
       isVisibleModal: false,
       blogForEdit: {},
       editabileForm: false,
+      search: "",
     };
     this.showModalForEdit = this.showModalForEdit.bind(this);
     this.clsoeModal = this.clsoeModal.bind(this);
+    this.updateSearch = this.updateSearch.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -43,12 +45,18 @@ class BlogPosts extends Component {
     });
   }
 
+  updateSearch(event) {
+    this.setState({
+      search: event.target.value,
+    });
+  }
+
   render() {
     const { blogsArray } = this.props;
-    const { isVisibleModal, blogForEdit, editabileForm } = this.state;
+    const { isVisibleModal, blogForEdit, editabileForm, search } = this.state;
     return (
       <div>
-        <Header />
+        <Header search={search} updateSearch={this.updateSearch} />
         <div className="blogPost-container">
           <Grid>
             <Grid.Row columns={2}>
@@ -73,6 +81,7 @@ class BlogPosts extends Component {
 
               <Grid.Column width={14}>
                 <BlogCard
+                  search={search}
                   blogs={blogsArray}
                   clsoeModal={this.clsoeModal}
                   showModalForEdit={this.showModalForEdit}

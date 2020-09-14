@@ -1,6 +1,6 @@
 import { React, NavLink, Input } from "../../global";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <div className="header-container">
       <nav>
@@ -12,10 +12,9 @@ const Header = () => {
           </div>
           <div className="headerNav-right">
             <Input
-              className="headerNav-search"
-              size="small"
-              icon="search"
-              placeholder="Search..."
+              type="text"
+              value={props.search}
+              onChange={props.updateSearch}
             />
             <NavLink activeClassName="active" to="/link-1">
               Link 1

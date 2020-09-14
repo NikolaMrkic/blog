@@ -10,12 +10,16 @@ const BlogCard = (props) => {
     dispatch(BLOG.delete(id));
   };
 
-  let sortedBlogs = props.blogs;
-  sortedBlogs = _.orderBy(sortedBlogs, "updatedAt", "desc");
-  if (sortedBlogs) {
+  let blogs = props.blogs;
+  let search = props.search;
+  if (blogs) {
+    // sortedBlogs = _.orderBy(sortedBlogs, "updatedAt", "desc");
+    let filteredBlogs = blogs.filter((blog) => {
+      return blog.title.toLowerCase().indexOf(search.toLowerCase()) !== -1;
+    });
     return (
       <div>
-        {sortedBlogs.map((data, index) => {
+        {filteredBlogs.map((data, index) => {
           return (
             <div className="blogCard-container" key={data.id}>
               <Grid width={16}>
