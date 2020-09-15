@@ -26,10 +26,10 @@ function* handlePostBlog(action) {
 
 function* handleDelete(action) {
   const blogId = action.payload.id;
+  const response = yield call(DataUtils.del, `/api/BlogPosts/` + blogId);
   try {
-    const response = yield call(DataUtils.del, `/api/BlogPosts/` + blogId);
-
-    const data = yield call(DataUtils.get, `/api/BlogPosts`);
+    const blogResponse = response.data;
+    const { data } = yield call(DataUtils.get, `/api/BlogPosts`);
     yield put(blogAction.success({ data }));
   } catch (e) {
     yield put(blogAction.failure({ error: { ...e } }));

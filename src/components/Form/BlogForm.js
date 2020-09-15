@@ -26,7 +26,7 @@ let BlogForm = (props) => {
           />
         </div>
         <div className="blogFormButtons">
-          <Button secondary type="primary" htmlType="submit">
+          <Button secondary type="primary">
             Post
           </Button>
           <Button secondary onClick={props.closeModal}>
