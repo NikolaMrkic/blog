@@ -19,3 +19,18 @@
   padding: 1rem 0 1rem 0;
 }
 
+@media (max-width: 670px) {
+
+  .blogCard-container{
+    padding: 1rem 0.5rem 1rem 0.5rem;
+  }
+ .blogCard-smallImage{
+   display: flex;
+   justify-content: space-between;
+ }
+
+ .blogCard-mediumImage{
+   justify-content: space-between;
+ }
+}
+

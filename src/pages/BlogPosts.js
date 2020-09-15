@@ -1,4 +1,4 @@
-import { React, Component, Grid, connect } from "../global";
+import { React, Component, Grid, connect, isMobile } from "../global";
 import Header from "../components/Header/Header";
 import BlogCard from "../components/Blog/BlogCard";
 import ApplicationMessage from "../components/Message/AplicationMessage";
@@ -54,44 +54,73 @@ class BlogPosts extends Component {
   render() {
     const { blogsArray } = this.props;
     const { isVisibleModal, blogForEdit, editabileForm, search } = this.state;
-    return (
-      <div>
-        <Header search={search} updateSearch={this.updateSearch} />
-        <div className="blogPost-container">
-          <Grid>
-            <Grid.Row columns={2}>
-              <Grid.Column width={2}></Grid.Column>
+    if (!isMobile) {
+      return (
+        <div>
+          <Header search={search} updateSearch={this.updateSearch} />
+          <div className="blogPost-container">
+            <Grid>
+              <Grid.Row columns={2}>
+                <Grid.Column width={2}></Grid.Column>
 
-              <Grid.Column width={14}>
-                <ApplicationMessage
-                  clsoeModal={isVisibleModal}
-                  showModal={isVisibleModal}
-                  blogForEdit={blogForEdit}
-                  editabileForm={editabileForm}
-                />
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+                <Grid.Column width={14}>
+                  <ApplicationMessage
+                    clsoeModal={isVisibleModal}
+                    showModal={isVisibleModal}
+                    blogForEdit={blogForEdit}
+                    editabileForm={editabileForm}
+                  />
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
 
-          <Grid>
-            <Grid.Row columns={2}>
-              <Grid.Column width={2}>
-                <CategoryCard />
-              </Grid.Column>
+            <Grid>
+              <Grid.Row columns={2}>
+                <Grid.Column width={2}>
+                  <CategoryCard />
+                </Grid.Column>
 
-              <Grid.Column width={14}>
-                <BlogCard
-                  search={search}
-                  blogs={blogsArray}
-                  clsoeModal={this.clsoeModal}
-                  showModalForEdit={this.showModalForEdit}
-                />
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+                <Grid.Column width={14}>
+                  <BlogCard
+                    search={search}
+                    blogs={blogsArray}
+                    clsoeModal={this.clsoeModal}
+                    showModalForEdit={this.showModalForEdit}
+                  />
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div>
+          <Header search={search} updateSearch={this.updateSearch} />
+          <div className="blogPost-container">
+            <div className="wrapper-message">
+              <ApplicationMessage
+                clsoeModal={isVisibleModal}
+                showModal={isVisibleModal}
+                blogForEdit={blogForEdit}
+                editabileForm={editabileForm}
+              />
+            </div>
+            <div>
+              <CategoryCard />
+            </div>
+            <div>
+              <BlogCard
+                search={search}
+                blogs={blogsArray}
+                clsoeModal={this.clsoeModal}
+                showModalForEdit={this.showModalForEdit}
+              />
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 }
 

@@ -22,7 +22,7 @@ const CategoryCard = (props) => {
     <div>
       <div className="categoryCard">
         <div className="categoryCard-categories">
-          <p>{categoryTitle}</p>
+          <h3 className="category-tite">{categoryTitle}</h3>
           {categories.map((data, index) => {
             return (
               <div key={index}>

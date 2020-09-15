@@ -35,6 +35,9 @@ import { useDispatch, connect } from "react-redux";
 // import lodash
 import _ from "lodash";
 
+//import ismobilejs
+import { isMobile } from "react-device-detect";
+
 export {
   React,
   useState,
@@ -62,4 +65,5 @@ export {
   Label,
   useEffect,
   _,
+  isMobile,
 };

@@ -1,3 +1,4 @@
+
 $headerColor: black;
 $linkColor: white;
 
@@ -10,19 +11,19 @@ $linkColor: white;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index : 1 ;
   padding: 1rem 2rem 1rem 2rem;
   margin: 0;
   height: auto;
   background-color: $headerColor;
 
   &-search {
-    width: 20rem;
-    height: 2.1rem;
-    margin: auto;
+    float: right;
+    display: flex;
+    padding: 0.5rem 1rem 0 0;
   }
 
-  &-left {
+  &-logo {
     float: left;
     display: flex;
 
@@ -34,7 +35,7 @@ $linkColor: white;
     }
   }
 
-  &-right {
+  &-menu {
     float: right;
     display: flex;
     padding: 0.5rem 1rem 0 0;
@@ -58,3 +59,13 @@ a:hover {
 a:link {
   color: $linkColor;
 }
+
+
+
+ @media (max-width: 650px) {
+    .headerNav{
+      padding: 1rem 0rem 1rem 0rem;
+    }
+  
+  }
+  
