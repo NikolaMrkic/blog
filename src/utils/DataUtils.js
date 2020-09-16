@@ -24,8 +24,6 @@ const post = async function (url, data, options = {}) {
   let result = [];
   await api.post(url, data, options).then((res) => (result = res));
   const dataAndStatusForPost = { data: result.data, status: result.status };
-  console.log("iz data utilsa", dataAndStatusForPost);
-
   return dataAndStatusForPost;
 };
 

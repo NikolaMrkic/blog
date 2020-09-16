@@ -1,4 +1,4 @@
-import { React, _, isMobile } from "../../global";
+import { React, isMobile } from "../../global";
 import DesktopCard from "./DesktopCard";
 import MobileCard from "./MoblieCard";
 
@@ -7,7 +7,6 @@ const BlogCard = (props) => {
 
   let blogs = props.blogs;
   let search = props.search;
-  console.log("blogs", blogs);
 
   if (blogs && blogs.length > 0) {
     let filteredBlogs = blogs.filter((blog) => {

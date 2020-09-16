@@ -40,9 +40,6 @@ export default function BlogReducer(state = initialState, action) {
         error: null,
       };
     case BLOG.FAILURE:
-      return {
-        ...state,
-      };
       break;
     default:
       return {

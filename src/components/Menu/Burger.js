@@ -3,7 +3,6 @@ import MobileMenu from "../Menu/MobileMenu";
 
 const Burger = () => {
   const [open, setOpen] = useState(false);
-  console.log("open", open);
   return (
     <div>
       <div

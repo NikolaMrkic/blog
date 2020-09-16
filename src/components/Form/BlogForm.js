@@ -1,12 +1,10 @@
 import { React, Field, reduxForm, Button, Form } from "../../global";
 import { renderTextArea } from "./CustomInputs";
 
-// probati sa let blog form
 let BlogForm = (props) => {
   const { handleSubmit } = props;
   return (
     <div className="blogFormWrapper">
-      {/* <Form onSubmit={handleSubmit(onSubmitForm)}> */}
       <Form onSubmit={handleSubmit}>
         <div>
           <Field
