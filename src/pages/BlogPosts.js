@@ -69,6 +69,7 @@ class BlogPosts extends Component {
                     showModal={isVisibleModal}
                     blogForEdit={blogForEdit}
                     editabileForm={editabileForm}
+                    blogsMessage={blogsArray}
                   />
                 </Grid.Column>
               </Grid.Row>
@@ -126,13 +127,13 @@ class BlogPosts extends Component {
 
 const mapStateToProps = (state) => {
   const fetchingBlogSuccess = state.blogState.success;
-  console.log("state", state);
   // Redux Store --> Component
   if (fetchingBlogSuccess) {
     const blogsArray = state.blogState.blogs.resultData;
-
+    const blogsMessage = state.blogState.message;
     return {
       blogsArray: blogsArray,
+      message: blogsMessage,
     };
   }
 };

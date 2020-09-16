@@ -1,7 +1,6 @@
 import { React, NavLink } from "../../global";
 
 const MobileMenu = ({ open }) => {
-  console.log("mobile menu open", open);
   const rednerCssClass = !open ? "closeBurger" : "openBurger";
   return (
     <div className={rednerCssClass}>

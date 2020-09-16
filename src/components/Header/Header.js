@@ -21,6 +21,7 @@ const Header = (props) => {
               type="text"
               value={props.search}
               onChange={props.updateSearch}
+              placeholder="Search Blog..."
             />
           </div>
         </div>

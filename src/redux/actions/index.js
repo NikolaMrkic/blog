@@ -8,16 +8,8 @@ export const blogAction = {
       success: false,
       error: null,
     }),
-  // requestOne: (id) =>
-  //   createAction(BLOG.GET_ONE, {
-  //     id,
-  //     fetching: true,
-  //     success: true,
-  //     error: null,
-  //   }),
   save: (data) =>
     createAction(BLOG.SAVE, {
-      /// ovo me je zezalo da ubacim objekat u array nakon responsa
       ...data,
       fetching: true,
       success: false,

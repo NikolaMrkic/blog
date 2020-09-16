@@ -1,4 +1,4 @@
-import { React, Link, Image, Button, useDispatch } from "../../global";
+import { React, Image, Button, useDispatch } from "../../global";
 import BLOG from "../../redux/actions/index";
 
 const MobileCard = ({ filteredBlogs, showModalForEdit }) => {
@@ -8,12 +8,20 @@ const MobileCard = ({ filteredBlogs, showModalForEdit }) => {
     const id = blogForDelete.id;
     dispatch(BLOG.delete(id));
   };
-  console.log("filteredBlogs", filteredBlogs);
+
+  const colors = ["white", "silver"];
+
   return (
     <div>
       {filteredBlogs.map((data, index) => {
         return (
-          <div className="blogCard-container" key={index}>
+          <div
+            className="blogCard-container"
+            key={index}
+            style={{
+              background: colors[index],
+            }}
+          >
             <div className="blogCard-smallImage">
               <Image src={require("../../assets/no-found-image80x80.png")} />
               <div className="blogCard-butons">

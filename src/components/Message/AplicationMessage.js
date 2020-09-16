@@ -16,19 +16,20 @@ let AplicationMessage = (props) => {
   const [isVisibleModal, setIsVisibleModal] = useState(false);
   const [isEditabileForm, setEditabileForm] = useState(false);
   const [isBlogForEdit, setBlogForEdit] = useState({});
+  const [showMessages, setMessage] = useState();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const { showModal, editabileForm, blogForEdit } = props;
-
-    //open modal from blog card component with edit button
+    const { showModal, editabileForm, blogForEdit, blogsMessage } = props;
     setIsVisibleModal(showModal);
     setEditabileForm(editabileForm);
     setBlogForEdit(blogForEdit);
+    showMessage(blogsMessage);
   }, [props]);
 
   const handleDismiss = () => {
     setIsVisibleMessage(false);
+    setMessage("Container for showing application messages");
 
     setTimeout(() => {
       setIsVisibleMessage(true);
@@ -56,15 +57,20 @@ let AplicationMessage = (props) => {
     }
   };
 
+  const showMessage = (blogs) => {
+    if (blogs && blogs.length > 0) {
+      setMessage("Successfully returned blogs");
+    } else {
+      setMessage("No blogs");
+    }
+  };
+
   if (isVisibleMessage) {
     return (
       <div>
         <div>
           <h4>Welcome to my Blog!</h4>
-          <Message
-            onDismiss={handleDismiss}
-            content="Container for showing application messages."
-          />
+          <Message onDismiss={handleDismiss} content={showMessages} />
         </div>
 
         <div className="blogPost-addButton">

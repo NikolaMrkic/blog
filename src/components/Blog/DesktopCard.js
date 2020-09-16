@@ -1,4 +1,11 @@
-import { React, Image, Button, useDispatch, Grid } from "../../global";
+import {
+  React,
+  Image,
+  Button,
+  useDispatch,
+  Grid,
+  useState,
+} from "../../global";
 import BLOG from "../../redux/actions/index";
 
 const DesktopCard = ({ filteredBlogs, showModalForEdit }) => {
@@ -8,13 +15,20 @@ const DesktopCard = ({ filteredBlogs, showModalForEdit }) => {
     const id = blogForDelete.id;
     dispatch(BLOG.delete(id));
   };
-
+  const colors = ["white", "silver"];
   return (
     <div>
       {filteredBlogs.map((data, index) => {
         const event = new Date(data.createdAt);
         return (
-          <div className="blogCard-container" key={index}>
+          <div
+            id="blog"
+            className="blogCard-container"
+            key={index}
+            style={{
+              background: colors[index],
+            }}
+          >
             <Grid width={16}>
               <Grid.Column width={2}>
                 <div className="blogCard-smallImage">
@@ -38,7 +52,6 @@ const DesktopCard = ({ filteredBlogs, showModalForEdit }) => {
                 </div>
               </Grid.Column>
             </Grid>
-
             <Grid width={16}>
               <Grid.Column width={16}>
                 <div>
