@@ -4,9 +4,8 @@ import {
   Button,
   useDispatch,
   Grid,
-  useState,
-} from "../../global";
-import BLOG from "../../redux/actions/index";
+} from "../../../global";
+import BLOG from "../../../redux/actions/index";
 
 const DesktopCard = ({ filteredBlogs, showModalForEdit }) => {
   const dispatch = useDispatch();
@@ -15,10 +14,11 @@ const DesktopCard = ({ filteredBlogs, showModalForEdit }) => {
     const id = blogForDelete.id;
     dispatch(BLOG.delete(id));
   };
-  const colors = ["white", "silver"];
+
   return (
     <div>
       {filteredBlogs.map((data, index) => {
+        let color = index % 2 === 0 ? "white" : "silver";
         const event = new Date(data.createdAt);
         return (
           <div
@@ -26,14 +26,14 @@ const DesktopCard = ({ filteredBlogs, showModalForEdit }) => {
             className="blogCard-container"
             key={index}
             style={{
-              background: colors[index],
+              background: color,
             }}
           >
             <Grid width={16}>
               <Grid.Column width={2}>
                 <div className="blogCard-smallImage">
                   <Image
-                    src={require("../../assets/no-found-image80x80.png")}
+                    src={require("../../../assets/no-found-image80x80.png")}
                   />
                 </div>
               </Grid.Column>
@@ -64,21 +64,21 @@ const DesktopCard = ({ filteredBlogs, showModalForEdit }) => {
                 <Grid.Column width={5}>
                   <div className="blogCard-mediumImage-right">
                     <Image
-                      src={require("../../assets/no-found-image100x100.png")}
+                      src={require("../../../assets/no-found-image100x100.png")}
                     />
                   </div>
                 </Grid.Column>
                 <Grid.Column width={5}>
                   <div className="blogCard-mediumImage-center">
                     <Image
-                      src={require("../../assets/no-found-image100x100.png")}
+                      src={require("../../../assets/no-found-image100x100.png")}
                     />
                   </div>
                 </Grid.Column>
                 <Grid.Column width={5}>
                   <div className="blogCard-mediumImage-left">
                     <Image
-                      src={require("../../assets/no-found-image100x100.png")}
+                      src={require("../../../assets/no-found-image100x100.png")}
                     />
                   </div>
                 </Grid.Column>

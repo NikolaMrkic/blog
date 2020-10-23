@@ -37,6 +37,7 @@ function* handleDelete(action) {
 }
 
 function* handlePut(action) {
+  console.log("action", action);
   const blogId = action.payload.blogForEdit.id;
   const blogForEdit = action.payload.blogForEdit;
   try {

@@ -1,4 +1,4 @@
-import { React, Field, reduxForm, Button, Form } from "../../global";
+import { React, Field, reduxForm, Button, Form } from "../../../global";
 import { renderTextArea } from "./CustomInputs";
 
 let BlogForm = (props) => {

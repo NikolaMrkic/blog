@@ -30,6 +30,7 @@ const configureStore = (initialState = {}, history) => {
   store.close = () => store.dispatch(END);
 
   if (module.hot) {
+    console.log("USAOOO");
     // Enable webpack hot module replacement for reducers
     module.hot.accept("./reducers", () => {
       import("./reducers").then((reducerModule) => {

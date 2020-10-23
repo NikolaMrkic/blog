@@ -12,7 +12,6 @@ const get = async function (url, options = {}) {
     (res) => (result = res),
     (err) => (error = err)
   );
-
   if (error !== undefined) {
     throw error.response;
   }
@@ -22,6 +21,7 @@ const get = async function (url, options = {}) {
 
 const post = async function (url, data, options = {}) {
   let result = [];
+
   await api.post(url, data, options).then((res) => (result = res));
   const dataAndStatusForPost = { data: result.data, status: result.status };
   return dataAndStatusForPost;
