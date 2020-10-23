@@ -1,17 +1,3 @@
-// //semantic-ui-css
-// import("semantic-ui-css/components/menu.min.css");
-// import("semantic-ui-css/components/grid.min.css");
-// import("semantic-ui-css/components/segment.min.css");
-// import("semantic-ui-css/components/button.min.css");
-// import("semantic-ui-css/components/label.min.css");
-// import("semantic-ui-css/components/header.min.css");
-// import("semantic-ui-css/components/image.min.css");
-// import("semantic-ui-css/components/card.min.css");
-// import("semantic-ui-css/components/modal.min.css");
-// import("semantic-ui-css/components/message.min.css");
-// import("semantic-ui-css/components/form.min.css");
-// import("semantic-ui-css/components/input.min.css");
-
 // imports from react
 import React, { useState, Component, useEffect } from "react";
 

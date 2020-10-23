@@ -8,7 +8,7 @@ import {
   useEffect,
   useDispatch,
 } from "../../global";
-import BlogForm from "../Form/BlogForm";
+import BlogForm from "../Blog/Form/BlogForm";
 import BLOG from "../../redux/actions/index";
 
 let AplicationMessage = (props) => {
@@ -59,6 +59,7 @@ let AplicationMessage = (props) => {
 
   const showMessage = (blogs) => {
     if (blogs && blogs.length > 0) {
+      console.log("(blogs && blogs.length > 0", blogs && blogs.length > 0);
       setMessage("Successfully returned blogs");
     } else {
       setMessage("No blogs");
@@ -91,7 +92,6 @@ let AplicationMessage = (props) => {
               onSubmit={handleSubmit}
               closeModal={closeModal}
               initialValues={isBlogForEdit}
-              isEditabileForm={isEditabileForm}
             />
           </Modal>
         </div>

@@ -1,4 +1,4 @@
-import { React, isMobile } from "../../global";
+import { React, isMobile } from "../../../global";
 import DesktopCard from "./DesktopCard";
 import MobileCard from "./MoblieCard";
 

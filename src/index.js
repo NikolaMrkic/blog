@@ -26,15 +26,4 @@ const render = (Component) => {
 };
 
 render(App);
-
-// if (module.hot) {
-//   module.hot.accept("./App", () => {
-//     // eslint-disable-next-line
-//     const App = require("./App").default;
-//     render(App);
-//   });
-// }
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();

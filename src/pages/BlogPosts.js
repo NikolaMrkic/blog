@@ -1,6 +1,6 @@
 import { React, Component, Grid, connect, isMobile } from "../global";
 import Header from "../components/Header/Header";
-import BlogCard from "../components/Blog/BlogCard";
+import BlogCard from "../components/Blog/Card/BlogCard";
 import ApplicationMessage from "../components/Message/AplicationMessage";
 import CategoryCard from "../components/Category/CategoryCard";
 import BLOG from "../redux/actions/index";
@@ -126,6 +126,7 @@ class BlogPosts extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log("state", state);
   const fetchingBlogSuccess = state.blogState.success;
   // Redux Store --> Component
   if (fetchingBlogSuccess) {

@@ -2,8 +2,8 @@
 @import './pages/BlogPost';
 @import './pages/NoFoundPage';
 //componnents
-@import '../components//Header/Header';
-@import './components/BlogCard';
-@import './components/CategoryCard';
-@import './components/BlogForm';
-@import './components//Burger';
+@import '../components/Header/Header';
+@import '../components/Blog/Card/BlogCard';
+@import '../components/Category/CategoryCard';
+@import '../components//Blog//Form/BlogForm';
+@import '../components/Menu/Burger';
